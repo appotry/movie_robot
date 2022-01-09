@@ -40,4 +40,4 @@
 
 打赏过的，加微信进群吧，有任何关于NAS的玩法，都可以交流：
 
-<img src="https://github.com/pofey/movie_robot/raw/main/doc/wechat.JPG" width="220" height="220" alt="赞赏码" style="float: left;"/>
+<img src="https://github.com/pofey/movie_robot/raw/main/doc/wechat.JPG" width="244" height="314" alt="微信" style="float: left;"/>
