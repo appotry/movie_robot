@@ -36,7 +36,7 @@
 =========================
 你的支持，是持续完善的动力。
 
-<img src="https://raw.githubusercontent.com/pofey/movie_robot/main/doc/alipay.jpg" width="220" height="314" alt="赞赏码" style="float: left;"/>
+<img src="https://raw.githubusercontent.com/pofey/movie_robot/main/doc/alipay.jpg" width="255" height="380" alt="赞赏码" style="float: left;"/>
 
 打赏过的，加微信进群吧，有任何关于NAS的玩法，都可以交流：
 
