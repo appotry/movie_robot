@@ -7,6 +7,9 @@
 
 注意，豆瓣和PT的读取和检索，均为使用OpenAPI，但模拟请求的过程中，增加了随机延迟机制来保护网站。本工具只能用于学习和自己研究，禁止用作任何商业用途！
 
+Emby个人影音库
+<img src="https://raw.githubusercontent.com/pofey/movie_robot/main/doc/embyweb.jpg" width="860" height="500" style="float: left;"/>
+
 环境要求
 =========================
 - 影视剧集管理服务器：Emby
