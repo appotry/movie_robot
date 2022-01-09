@@ -30,8 +30,14 @@
 
 更多帮助
 =========================
-如果你在使用过程中有任何问题，或者有其他特殊需求，可以联络我交流，但因为个人精力的关系，我不可能及时回答和解决每个人的问题。如果你打赏一杯咖啡，可能会提高我的响应积极性：）
+如果你在使用过程中有任何问题，或者有其他特殊需求，可以联络我交流，但因为个人精力的关系，我不可能及时回答和解决每个人的问题。
 
 打赏作者杯咖啡
 =========================
-你的支持，是我持续完善的动力。
+你的支持，是持续完善的动力。
+
+<img src="https://raw.githubusercontent.com/pofey/movie_robot/main/doc/alipay.jpg" width="220" height="220" alt="赞赏码" style="float: left;"/>
+
+打赏过的，加微信进群吧，有任何关于NAS的玩法，都可以交流：
+
+<img src="https://github.com/pofey/movie_robot/raw/main/doc/wechat.JPG" width="220" height="220" alt="赞赏码" style="float: left;"/>
