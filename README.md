@@ -21,11 +21,12 @@ Emby个人影音库
 部署方式
 =========================
 - 本应用支持Docker形式启动，日常运行占资源非常低，无CPU消耗（linux crontab调度任务），常驻内存2MB左右；但因为使用了非OpenAPI的形式，所以没有提供打包好的docker镜像进行分享，请自行通过Dockerfile打包；
+  - linux/mac: sh docker_build 进行打包
 - 当然也可以下载源码，直接用NAS的定时任务运行，或者你的任何能够定时调度python程序的工具；
+  - 1、python3 -m venv venv 创建虚拟环境
+  - 2、安装依赖：pip install -r requirements.txt 
+  - 3、执行命令：python3 douban_movie_download.py -w /workdir
 
-源码运行方式请先安装依赖：pip install -r requirements.txt
-
-然后在执行命令：python3 douban_movie_download.py -w /workdir
 
 配置文件
 =========================
