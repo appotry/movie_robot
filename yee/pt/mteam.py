@@ -29,6 +29,7 @@ class MTeam:
         self.torrent = TorrentScoring()
 
     def login_by_cookie(self, cookie):
+        print('开始采用Cookie信息登陆')
         cookie_arr = cookie.split(';')
         cookie_jar = RequestsCookieJar()
         # 默认设30天过期
@@ -45,13 +46,14 @@ class MTeam:
                 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36'
             }, cookies=cookie_jar
         )
-        match_login_user = re.search(r'class=\'EliteUser_Name\'><b>(.+)</b></a></span>', res.text)
+        match_login_user = re.search(r'class=\'[^\']+\'><b>(.+)</b></a></span>', res.text)
         if res is None or not match_login_user:
             raise RuntimeError('登陆失败')
         self.cookies = cookie_jar
         print('MTeam登陆成功，欢迎回来：%s' % match_login_user.group(1))
 
     def login(self, username, password):
+        print('开始采用账号密码登陆，账号：%s' % username)
         res = self.req.post_res(
             'https://kp.m-team.cc/takelogin.php',
             params={'username': username, 'password': password},
