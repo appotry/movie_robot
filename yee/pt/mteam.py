@@ -234,7 +234,7 @@ class MTeam:
         all_publish_time.sort()
         if 'first_torrent_passed_hours' in filter_param and filter_param['first_torrent_passed_hours'] is not None:
             start_passed_hours = round((datetime.datetime.now() - datetime.datetime.strptime(all_publish_time[0],
-                                                                                             '%Y-%m-%d %H:%M:%S')).seconds / 60 / 60,
+                                                                                             '%Y-%m-%d %H:%M:%S')).total_seconds() / 60 / 60,
                                        2)
             if start_passed_hours < filter_param['first_torrent_passed_hours']:
                 print(
