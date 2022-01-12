@@ -12,9 +12,11 @@ class Downloader:
         self.workdir = kwargs['workdir']
         self.delete_torrent = kwargs['downloader']['delete_torrent']
         self.save_mode = kwargs['downloader']['save_mode']
+        self.first_torrent_passed_hours = kwargs['downloader']['first_torrent_passed_hours']
         self.douban_config = kwargs['douban']
         self.douban = DoubanMovie()
-        self.mteam = MTeam(username=kwargs['mteam']['username'], password=kwargs['mteam']['password'])
+        self.mteam = MTeam(username=kwargs['mteam']['username'], password=kwargs['mteam']['password'],
+                           cookie=kwargs['mteam']['cookie'])
         self.emby = Emby(
             host=kwargs['emby']['host'],
             port=kwargs['emby']['port'],
@@ -32,19 +34,39 @@ class Downloader:
                 u,
                 types=self.douban_config['types'],
                 within_days=self.douban_config['within_days'],
-                turn_page=self.douban_config['turn_page']
+                turn_page=self.douban_config['turn_page'],
+                first_torrent_passed_hours=self.first_torrent_passed_hours
             )
         print('所有用户的影视下载已经完成。')
 
-    def get_best_torrent(self, douban_movie):
-        torrent_list = self.mteam.search_by_douban_movie(douban_movie)
+    def get_best_torrent(self, douban_movie, **filter_params):
+        torrent_list = self.mteam.search_by_douban_movie(douban_movie, **filter_params)
         if torrent_list is None:
             return None
         return torrent_list[0]
 
-    def search_and_download(self, douban_user, types=['wish'], within_days=365, turn_page=True):
-        movie_list = self.douban.get_user_movie_list(douban_user, types=types, within_days=within_days,
-                                                     turn_page=turn_page)
+    def __check_param_is_empty(self, params, key):
+        if key not in params:
+            return True
+        val = params[key]
+        if val is None:
+            return True
+        if type(val) == str and val.strip() == '':
+            return True
+        if type(val) == list and len(val) == 0:
+            return True
+        return False
+
+    def search_and_download(self, douban_user, **filter_params):
+        if self.__check_param_is_empty(filter_params, 'types'):
+            filter_params['types'] = ['wish']
+        if self.__check_param_is_empty(filter_params, 'within_days'):
+            filter_params['within_days'] = 365
+        if self.__check_param_is_empty(filter_params, 'turn_page'):
+            filter_params['turn_page'] = True
+        movie_list = self.douban.get_user_movie_list(douban_user, types=filter_params['types'],
+                                                     within_days=filter_params['within_days'],
+                                                     turn_page=filter_params['turn_page'])
         if movie_list is None:
             print('%s没有任何影视资源需要下载' % douban_user)
             return None
@@ -78,7 +100,7 @@ class Downloader:
                 # 完全没有的剧集或电影
                 print('%s需要下载，开始寻找种子...' % search_name)
                 # 取分最高的一个
-                best_choice = self.get_best_torrent(movie_detail)
+                best_choice = self.get_best_torrent(movie_detail, first_torrent_passed_hours=filter_params['first_torrent_passed_hours'])
                 if best_choice is None:
                     print('找不到与%s有关的种子！' % search_name)
                     continue

@@ -10,7 +10,7 @@ user_setting_name = 'user_config.yml'
 
 def init_default_user_setting(filepath):
     default_config = {
-        'downloader': {'delete_torrent': False, 'save_mode': [
+        'downloader': {'first_torrent_passed_hours': 6, 'delete_torrent': False, 'save_mode': [
             {
                 'type': '电影',
                 'cate': '纪录片',
@@ -40,7 +40,7 @@ def init_default_user_setting(filepath):
                  'https': False},
         'qbittorrent': {'url': 'http://your_host:8080/', 'need_login': False, 'username': 'admin',
                         'password': 'admin'},
-        'mteam': {'username': 'your_username', 'password': 'your_password'}
+        'mteam': {'username': None, 'password': None, 'cookie': None}
     }
     with open(filepath, 'w', encoding='utf-8') as file:
         yaml.dump(default_config, file, allow_unicode=True)
@@ -69,10 +69,12 @@ def build_downloader(user_config, workdir):
         'workdir': workdir,
         'downloader': {
             'delete_torrent': user_config['downloader']['delete_torrent'],
-            'save_mode': user_config['downloader']['save_mode']
+            'save_mode': user_config['downloader']['save_mode'],
+            'first_torrent_passed_hours': user_config['downloader'][
+                'first_torrent_passed_hours'] if 'first_torrent_passed_hours' in user_config['downloader'] else None
         },
         'douban': {
-            'user_domain': str(user_config['douban']['user_domain']).split(';'),
+            'user_domain': user_config['douban']['user_domain'].split(';'),
             'within_days': user_config['douban']['within_days'],
             'turn_page': user_config['douban']['turn_page'],
             'types': user_config['douban']['types'].split(';')
@@ -91,7 +93,8 @@ def build_downloader(user_config, workdir):
         },
         'mteam': {
             'username': user_config['mteam']['username'],
-            'password': user_config['mteam']['password']
+            'password': user_config['mteam']['password'],
+            'cookie': user_config['mteam']['cookie'] if 'cookie' in user_config['mteam'] else None
         }
     }
     return Downloader(**params)
@@ -107,3 +110,4 @@ if __name__ == '__main__':
     downloader = build_downloader(config, workdir)
     print('开始寻找电影并自动找种下载，现在时间是 %s' % datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     downloader.start()
+    sys.exit()
