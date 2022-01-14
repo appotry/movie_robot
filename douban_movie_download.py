@@ -74,10 +74,10 @@ def build_downloader(user_config, workdir):
                 'first_torrent_passed_hours'] if 'first_torrent_passed_hours' in user_config['downloader'] else None
         },
         'douban': {
-            'user_domain': user_config['douban']['user_domain'].split(';'),
+            'user_domain': str(user_config['douban']['user_domain']).split(';'),
             'within_days': user_config['douban']['within_days'],
             'turn_page': user_config['douban']['turn_page'],
-            'types': user_config['douban']['types'].split(';')
+            'types': str(user_config['douban']['types']).split(';')
         },
         'emby': {
             'host': user_config['emby']['host'],
