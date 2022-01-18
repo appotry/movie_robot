@@ -1,3 +1,7 @@
+特别说明
+=========================
+**这款小工具的需求超出想象，但作者没时间回复每一个人，如果你想获得稳定的Docker镜像，想体验最新的功能，更多的影音服务和站点支持，更酷的私人观影体验（比如同步视频网站最新热门影视等）。或者你有更多好玩需求希望作者开发，又或者你对程序感兴趣想了解更多设计思路自己学习改进，可以请作者喝杯咖啡表达诚意（微信扫描下面的赞赏码），就可以加入专属学习交流群，新的功能会优先在专属群推出。☕️**
+
 更新日志
 =========================
 - 2022-01-12
@@ -47,6 +51,6 @@ Emby个人影音库
 
 <img src="https://raw.githubusercontent.com/pofey/movie_robot/main/doc/wechatpay.jpg" width="220" height="220" alt="赞赏码" style="float: left;"/>
 
-打赏过的，交个朋友：
+打赏过的，加微信进专属交流群：
 
 <img src="https://github.com/pofey/movie_robot/raw/main/doc/wechat.JPG" width="244" height="314" alt="微信" style="float: left;"/>
